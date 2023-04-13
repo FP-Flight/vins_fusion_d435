@@ -1,0 +1,14 @@
+<launch>
+	<include file="$(find vins)/launch/rs_camera.launch">
+		<arg name="output" value="log"/>
+	</include>
+	<include file="$(find vins)/launch/rviz.launch"/>
+
+	<!-- <include file="$(find mavros)/launch/px4.launch"/> -->
+	<node name="vins_fusion" pkg="vins"  type="vins_node" output="screen" args="$(find vins)/../config/vins_with_d435.yaml">
+        <remap from="~imu_propagate" to="/quadrotor_control/odom"/>
+	</node >
+
+	<!-- <node name="loop_fusion" pkg="loop_fusion"  type="loop_fusion_node" args="$(find vins)/../config/fast_drone_250.yaml" output="screen"/> -->
+	
+</launch> 

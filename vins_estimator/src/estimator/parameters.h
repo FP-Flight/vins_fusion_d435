@@ -48,6 +48,7 @@ extern double TD;
 extern int ESTIMATE_TD;
 extern int ROLLING_SHUTTER;
 extern int ROW, COL;
+extern double X_SWARM_OFFSET,Y_SWARM_OFFSET;
 extern int NUM_OF_CAM;
 extern int STEREO;
 extern int USE_IMU;

@@ -45,6 +45,9 @@ int MIN_DIST;
 double F_THRESHOLD;
 int SHOW_TRACK;
 int FLOW_BACK;
+double X_SWARM_OFFSET;
+double Y_SWARM_OFFSET;
+
 
 
 template <typename T>
@@ -198,6 +201,10 @@ void readParameters(std::string config_file)
         ESTIMATE_TD = 0;
         printf("no imu, fix extrinsic param; no time offset calibration\n");
     }
+    X_SWARM_OFFSET = fsSettings["x_swarm_offset"];
+    Y_SWARM_OFFSET = fsSettings["y_swarm_offset"];
+    
+
 
     fsSettings.release();
 }

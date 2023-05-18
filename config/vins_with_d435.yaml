@@ -13,7 +13,7 @@ image1_topic: "/camera/infra2/image_rect_raw"
 
 
 
-output_path: "/home/ll/vins_output"
+output_path: "/home/qyswarm/vins_output"
 
 
 cam0_calib: "left.yaml"
@@ -26,29 +26,29 @@ x_swarm_offset: 0.0
 y_swarm_offset: 0.0
 
 # Extrinsic parameter between IMU and Camera.
-estimate_extrinsic: 1   # 0  Have an accurate extrinsic parameters. We will trust the following imu^R_cam, imu^T_cam, don't change it.
+estimate_extrinsic: 0   # 0  Have an accurate extrinsic parameters. We will trust the following imu^R_cam, imu^T_cam, don't change it.
                         # 1  Have an initial guess about extrinsic parameters. We will optimize around your initial guess.
 
 body_T_cam0: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [ 2.4861648866866037e-02, -1.1431659140833689e-01,
-       9.9313323141681265e-01, 4.4506186534535794e-02,
-       -9.9958487379395367e-01, -1.7311123945634055e-02,
-       2.3030524745762615e-02, 1.4547955351587824e-02,
-       1.4559481376303418e-02, -9.9329353260580466e-01,
-       -1.1469951868048467e-01, 4.9730999172833301e-02, 0., 0., 0., 1. ]
+   data: [ 3.4572317526204266e-02, -1.1795886556515978e-03,
+       9.9940150261617633e-01, 7.0151563804231334e-02,
+       -9.9901844886110336e-01, -2.7750180832599947e-02,
+       3.4526313138146136e-02, 4.8849266442114347e-02,
+       2.7692845574671554e-02, -9.9961419359388937e-01,
+       -2.1378188922176466e-03, 4.7902453078374908e-02, 0., 0., 0., 1. ]
 body_T_cam1: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [ 2.4537335059937937e-02, -1.1377442673902788e-01,
-       9.9320355366277391e-01, 4.0448186269665558e-02,
-       -9.9959356942484923e-01, -1.7214903348465427e-02,
-       2.2723183473989772e-02, -3.7143722377060207e-02,
-       1.4512586008217865e-02, -9.9335745173774637e-01,
-       -1.1415059318481680e-01, 5.1685087280041828e-02, 0., 0., 0., 1. ]
+   data: [ 3.4028461956714495e-02, -9.4055379562357766e-04,
+       9.9942042161215516e-01, 6.5208426129038100e-02,
+       -9.9903232306069789e-01, -2.7913559830477830e-02,
+       3.3988978471498177e-02, -1.8767962065182450e-03,
+       2.7865413271761508e-02, -9.9960989817835832e-01,
+       -1.8894991521734017e-03, 5.0978459596673110e-02, 0., 0., 0., 1. ]
 #Multiple thread support
 multiple_thread: 1
 
@@ -74,7 +74,7 @@ g_norm: 9.805         # gravity magnitude
 
 #unsynchronization parameters
 estimate_td: 1                      # online estimate time offset between camera and imu
-td: -0.02               # initial value of time offset. unit: s. readed image clock + td = real image clock (IMU clock)
+td: -0.01               # initial value of time offset. unit: s. readed image clock + td = real image clock (IMU clock)
 
 #loop closure parameters
 load_previous_pose_graph: 0        # load and reuse previous pose graph; load from 'pose_graph_save_path'

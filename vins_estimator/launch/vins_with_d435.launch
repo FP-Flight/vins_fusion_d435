@@ -1,7 +1,4 @@
 <launch>
-	<include file="$(find vins)/launch/rs_camera.launch">
-		<arg name="output" value="log"/>
-	</include>
 	<include file="$(find vins)/launch/rviz.launch"/>
 
 	<!-- <include file="$(find mavros)/launch/px4.launch"/> -->

@@ -22,7 +22,7 @@ image_width: 640
 image_height: 480
 
 # swarm offset option
-x_swarm_offset: 0.0
+x_swarm_offset: 2.0
 y_swarm_offset: 0.0
 
 # Extrinsic parameter between IMU and Camera.

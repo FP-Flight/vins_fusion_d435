@@ -11,7 +11,7 @@
 
 using namespace ros;
 using namespace Eigen;
-ros::Publisher pub_odometry, pub_latest_odometry;
+ros::Publisher pub_odometry, pub_latest_odometry,pub_latest_posestamped;
 ros::Publisher pub_path;
 ros::Publisher pub_point_cloud, pub_margin_cloud;
 ros::Publisher pub_key_poses;
@@ -34,6 +34,7 @@ size_t pub_counter = 0;
 void registerPub(ros::NodeHandle &n)
 {
     pub_latest_odometry = n.advertise<nav_msgs::Odometry>("imu_propagate", 1000);
+    pub_latest_posestamped = n.advertise<geometry_msgs::PoseStamped>("imu_propagate_pose", 1000);
     pub_path = n.advertise<nav_msgs::Path>("path", 1000);
     pub_odometry = n.advertise<nav_msgs::Odometry>("odometry", 1000);
     pub_point_cloud = n.advertise<sensor_msgs::PointCloud>("point_cloud", 1000);
@@ -66,6 +67,16 @@ void pubLatestOdometry(const Eigen::Vector3d &P, const Eigen::Quaterniond &Q, co
     odometry.twist.twist.linear.y = V.y();
     odometry.twist.twist.linear.z = V.z();
     pub_latest_odometry.publish(odometry);
+
+    // geometry_msgs::PoseStamped posestamp;
+    // posestamp.header.stamp = ros::Time(t);
+    // posestamp.header.frame_id = "world";
+    // posestamp.pose.position =  odometry.pose.pose.position;
+    // posestamp.pose.orientation =  odometry.pose.pose.orientation;
+    // pub_latest_posestamped.publish(posestamp);
+
+
+
 }
 
 void pubTrackImage(const cv::Mat &imgTrack, const double t)
@@ -168,6 +179,14 @@ void pubOdometry(const Estimator &estimator, const std_msgs::Header &header)
         odometry.twist.twist.linear.y = estimator.Vs[WINDOW_SIZE].y();
         odometry.twist.twist.linear.z = estimator.Vs[WINDOW_SIZE].z();
         pub_odometry.publish(odometry);
+
+        // wanghao
+        geometry_msgs::PoseStamped posestamp;
+        posestamp.header.stamp = odometry.header.stamp;
+        posestamp.header.frame_id = "world";
+        posestamp.pose.position =  odometry.pose.pose.position;
+        posestamp.pose.orientation =  odometry.pose.pose.orientation;
+        pub_latest_posestamped.publish(posestamp);
 
         geometry_msgs::PoseStamped pose_stamped;
         pose_stamped.header = header;

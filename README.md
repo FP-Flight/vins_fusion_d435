@@ -1,4 +1,7 @@
 # VINS-Fusion
+## 修改
+- D435 必须在开始读取后才开始调整曝光，会影响前后特征点识别，因此扔掉刚开始的 THROW_OUT_MAX_VALUE 张 图片。
+
 ## An optimization-based multi-sensor state estimator
 
 <img src="https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/master/support_files/image/vins_logo.png" width = 55% height = 55% div align=left />

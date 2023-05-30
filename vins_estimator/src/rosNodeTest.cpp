@@ -28,10 +28,19 @@ queue<sensor_msgs::PointCloudConstPtr> feature_buf;
 queue<sensor_msgs::ImageConstPtr> img0_buf;
 queue<sensor_msgs::ImageConstPtr> img1_buf;
 std::mutex m_buf;
+#define  THROW_OUT_MAX_VALUE 30
+static int throw_out_num = 0;
 
 
 void img0_callback(const sensor_msgs::ImageConstPtr &img_msg)
 {
+    if(throw_out_num < THROW_OUT_MAX_VALUE)
+    {
+        throw_out_num++;
+        return;
+    }
+
+
     m_buf.lock();
     img0_buf.push(img_msg);
     m_buf.unlock();
@@ -39,6 +48,12 @@ void img0_callback(const sensor_msgs::ImageConstPtr &img_msg)
 
 void img1_callback(const sensor_msgs::ImageConstPtr &img_msg)
 {
+    if(throw_out_num < THROW_OUT_MAX_VALUE)
+    {
+        throw_out_num++;
+        return;
+    }
+
     // ROS_WARN_STREAM("img queue num"<< img1_buf.size());
     m_buf.lock();
     img1_buf.push(img_msg);

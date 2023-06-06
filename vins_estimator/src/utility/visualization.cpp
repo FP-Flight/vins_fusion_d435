@@ -185,6 +185,9 @@ void pubOdometry(const Estimator &estimator, const std_msgs::Header &header)
         posestamp.header.stamp = odometry.header.stamp;
         posestamp.header.frame_id = "world";
         posestamp.pose.position =  odometry.pose.pose.position;
+        posestamp.pose.position.x += +X_SWARM_OFFSET;
+        posestamp.pose.position.y += +Y_SWARM_OFFSET;
+
         posestamp.pose.orientation =  odometry.pose.pose.orientation;
         pub_latest_posestamped.publish(posestamp);
 

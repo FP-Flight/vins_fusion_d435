@@ -2,11 +2,11 @@
 
 #common parameters
 #support: 1 imu 1 cam; 1 imu 2 cam: 2 cam; 
-imu: 1 
+imu: 1
 num_of_cam: 2
 
 
-imu_topic: "/mavros/imu/data_raw"
+imu_topic: "/px4_imu/mavros/imu/data_raw"
 image0_topic: "/camera/infra1/image_rect_raw"
 image1_topic: "/camera/infra2/image_rect_raw"
 
@@ -22,33 +22,33 @@ image_width: 640
 image_height: 480
 
 # swarm offset option
-x_swarm_offset: 2.0
+x_swarm_offset: 0.0
 y_swarm_offset: 0.0
 
 # Extrinsic parameter between IMU and Camera.
-estimate_extrinsic: 0   # 0  Have an accurate extrinsic parameters. We will trust the following imu^R_cam, imu^T_cam, don't change it.
+estimate_extrinsic: 0  # 0  Have an accurate extrinsic parameters. We will trust the following imu^R_cam, imu^T_cam, don't change it.
                         # 1  Have an initial guess about extrinsic parameters. We will optimize around your initial guess.
 
 body_T_cam0: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [ 3.4572317526204266e-02, -1.1795886556515978e-03,
-       9.9940150261617633e-01, 7.0151563804231334e-02,
-       -9.9901844886110336e-01, -2.7750180832599947e-02,
-       3.4526313138146136e-02, 4.8849266442114347e-02,
-       2.7692845574671554e-02, -9.9961419359388937e-01,
-       -2.1378188922176466e-03, 4.7902453078374908e-02, 0., 0., 0., 1. ]
+   data: [ 1.5134161313850480e-02, 1.3305832978321441e-02,
+       9.9979693536741721e-01, 5.6747115582689189e-02,
+       -9.9987071934863014e-01, 5.6330852480714899e-03,
+       1.5060310084488382e-02, 1.6614876444087448e-02,
+       -5.4315513970993323e-03, -9.9989560613063055e-01,
+       1.3389364812405935e-02, 5.4515668057091834e-02, 0., 0., 0., 1. ]
 body_T_cam1: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [ 3.4028461956714495e-02, -9.4055379562357766e-04,
-       9.9942042161215516e-01, 6.5208426129038100e-02,
-       -9.9903232306069789e-01, -2.7913559830477830e-02,
-       3.3988978471498177e-02, -1.8767962065182450e-03,
-       2.7865413271761508e-02, -9.9960989817835832e-01,
-       -1.8894991521734017e-03, 5.0978459596673110e-02, 0., 0., 0., 1. ]
+   data: [ 1.4705563695262658e-02, 1.3610136256492489e-02,
+       9.9979923514047786e-01, 5.2404659596803967e-02,
+       -9.9987684188609416e-01, 5.6818042934321245e-03,
+       1.4629359516466045e-02, -3.1388736032690392e-02,
+       -5.4815560104271022e-03, -9.9989123473058361e-01,
+       1.3692014192722146e-02, 5.5164711836662002e-02, 0., 0., 0., 1. ]
 #Multiple thread support
 multiple_thread: 1
 

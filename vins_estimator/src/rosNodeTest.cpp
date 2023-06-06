@@ -28,7 +28,7 @@ queue<sensor_msgs::PointCloudConstPtr> feature_buf;
 queue<sensor_msgs::ImageConstPtr> img0_buf;
 queue<sensor_msgs::ImageConstPtr> img1_buf;
 std::mutex m_buf;
-#define  THROW_OUT_MAX_VALUE 30
+#define  THROW_OUT_MAX_VALUE 60
 static int throw_out_num = 0;
 
 
@@ -50,7 +50,6 @@ void img1_callback(const sensor_msgs::ImageConstPtr &img_msg)
 {
     if(throw_out_num < THROW_OUT_MAX_VALUE)
     {
-        throw_out_num++;
         return;
     }
 
